@@ -57,7 +57,7 @@ export default function Contact() {
         >
           <a
             href="mailto:ankitsingh41201@gmail.com"
-            className="font-display text-signal font-semibold hover:brightness-110 transition block mb-8 break-all focus:outline-none focus-visible:underline"
+            className="font-display text-signal font-semibold hover:brightness-110 transition block mb-8 break-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal"
             style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.75rem)' }}
           >
             ankitsingh41201@gmail.com

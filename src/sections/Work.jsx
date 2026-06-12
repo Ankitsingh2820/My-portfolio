@@ -42,7 +42,7 @@ function ProjectCard({ project }) {
       className="group relative block bg-panel p-8 overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-inset"
     >
       <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-signal transition-all duration-300 group-hover:w-full" />
-      <span className="absolute top-8 right-8 text-muted group-hover:text-signal transition-colors text-lg">
+      <span aria-hidden="true" className="absolute top-8 right-8 text-muted group-hover:text-signal transition-colors text-lg">
         →
       </span>
       <h3 className="font-display text-xl font-semibold text-bone mb-3 pr-8">
