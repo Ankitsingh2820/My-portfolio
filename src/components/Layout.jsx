@@ -12,13 +12,17 @@ export default function Layout({ children, sections }) {
     ).matches
     if (!prefersReduced) {
       lenisRef.current = new Lenis()
+      let rafId
       const raf = (time) => {
         lenisRef.current.raf(time)
-        requestAnimationFrame(raf)
+        rafId = requestAnimationFrame(raf)
       }
-      requestAnimationFrame(raf)
+      rafId = requestAnimationFrame(raf)
+      return () => {
+        cancelAnimationFrame(rafId)
+        lenisRef.current?.destroy()
+      }
     }
-    return () => lenisRef.current?.destroy()
   }, [])
 
   useEffect(() => {
