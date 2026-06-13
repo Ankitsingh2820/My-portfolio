@@ -15,7 +15,7 @@ const PROJECTS = [
       'NLP-powered tool that summarizes documents and generates contextual practice questions from uploaded PDFs, DOCX, or plain text.',
     tags: ['Python', 'Streamlit', 'NLP', 'NLTK', 'PyPDF2'],
     href: 'https://github.com/Ankitsingh2820/summeriser',
-    live: 'https://summeriser.streamlit.app',
+    live: 'https://summeriser-82x9gfkgudteqevrtwipjz.streamlit.app/',
   },
   {
     title: 'Student Performance Predictor',
