@@ -6,52 +6,66 @@ const PROJECTS = [
     description:
       'Retrieval-Augmented Generation system using the Gemini API, LangChain, and semantic search for contextual, accurate AI responses.',
     tags: ['Python', 'Gemini API', 'LangChain', 'Semantic Search', 'Vector DB'],
-    href: 'https://github.com/Ankitsingh2820',
+    href: 'https://github.com/Ankitsingh2820/Rag_gemini',
+    live: 'https://ankitsingh2820-rag-gemini-app-demo.streamlit.app',
   },
   {
-    title: 'AI Research Summarizer',
+    title: 'AI Quiz & Summarizer',
     description:
-      'AI-powered text-summarization system built on NLP and LLM workflows using embeddings and Hugging Face models.',
-    tags: ['Python', 'NLP', 'Generative AI', 'HuggingFace', 'Embeddings'],
-    href: 'https://github.com/Ankitsingh2820',
+      'NLP-powered tool that summarizes documents and generates contextual practice questions from uploaded PDFs, DOCX, or plain text.',
+    tags: ['Python', 'Streamlit', 'NLP', 'NLTK', 'PyPDF2'],
+    href: 'https://github.com/Ankitsingh2820/summeriser',
+    live: 'https://summeriser.streamlit.app',
+  },
+  {
+    title: 'Student Performance Predictor',
+    description:
+      'ANN-based ML app that predicts student pass/fail outcomes from study habits and provides actionable recommendations.',
+    tags: ['Python', 'Streamlit', 'Scikit-learn', 'ANN', 'Matplotlib'],
+    href: 'https://github.com/Ankitsingh2820/Student_performance',
+    live: 'https://ankitsingh2820-student-performance-app-demo.streamlit.app',
   },
   {
     title: 'CodeShare',
     description:
-      'Real-time collaborative editor with live code execution, synced I/O, and sub-200ms latency.',
+      'Real-time collaborative code editor with live synced I/O and multi-language syntax highlighting.',
     tags: ['React', 'Node.js', 'Socket.IO', 'WebSockets'],
     href: 'https://github.com/Ankitsingh2820/codeShare-Frontend',
+    live: 'https://ankitsingh2820.github.io/codeShare-Frontend/',
+  },
+  {
+    title: 'Science Teacher Tool',
+    description:
+      'AI-powered science teaching assistant that delivers structured, age-appropriate explanations with step-by-step breakdowns.',
+    tags: ['React', 'Vite', 'Python', 'Flask', 'Gemini API'],
+    href: 'https://github.com/Ankitsingh2820/Science-_Teacher',
+    live: 'https://ankitsingh2820.github.io/Science-_Teacher/',
   },
   {
     title: 'GoHolidays',
     description:
-      'Full-stack booking platform with authentication, reviews, scalable CRUD operations, and MVC architecture.',
+      'Full-stack travel booking platform with authentication, reviews, image uploads, and MVC architecture.',
     tags: ['Node.js', 'Express', 'MongoDB', 'REST API'],
     href: 'https://github.com/Ankitsingh2820/GoHolidays-main',
+    live: null,
   },
 ]
 
 function ProjectCard({ project }) {
   const reduced = useReducedMotion()
   return (
-    <motion.a
-      href={project.href}
-      target="_blank"
-      rel="noopener noreferrer"
+    <motion.div
       whileHover={reduced ? {} : { y: -4 }}
-      className="group relative block bg-panel p-8 overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-inset"
+      className="group relative bg-panel p-8 overflow-hidden flex flex-col"
     >
       <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-signal transition-all duration-300 group-hover:w-full" />
-      <span aria-hidden="true" className="absolute top-8 right-8 text-muted group-hover:text-signal transition-colors text-lg">
-        →
-      </span>
       <h3 className="font-display text-xl font-semibold text-bone mb-3 pr-8">
         {project.title}
       </h3>
-      <p className="font-sans text-muted text-sm leading-relaxed mb-6">
+      <p className="font-sans text-muted text-sm leading-relaxed mb-6 flex-1">
         {project.description}
       </p>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 mb-6">
         {project.tags.map((tag) => (
           <span
             key={tag}
@@ -61,7 +75,27 @@ function ProjectCard({ project }) {
           </span>
         ))}
       </div>
-    </motion.a>
+      <div className="flex gap-4">
+        {project.live && (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs text-signal border border-signal px-3 py-1.5 hover:bg-signal hover:text-ink transition-colors"
+          >
+            Live Demo →
+          </a>
+        )}
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-mono text-xs text-muted border border-hairline px-3 py-1.5 hover:text-bone hover:border-bone transition-colors"
+        >
+          GitHub
+        </a>
+      </div>
+    </motion.div>
   )
 }
 
