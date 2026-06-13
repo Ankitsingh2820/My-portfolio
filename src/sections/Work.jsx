@@ -7,7 +7,7 @@ const PROJECTS = [
       'Retrieval-Augmented Generation system using the Gemini API, LangChain, and semantic search for contextual, accurate AI responses.',
     tags: ['Python', 'Gemini API', 'LangChain', 'Semantic Search', 'Vector DB'],
     href: 'https://github.com/Ankitsingh2820/Rag_gemini',
-    live: 'https://ankitsingh2820-rag-gemini-app-demo.streamlit.app',
+    live: 'https://raggemini-sgydghhwunzcauwdn7b3bh.streamlit.app/',
   },
   {
     title: 'AI Quiz & Summarizer',
@@ -23,7 +23,7 @@ const PROJECTS = [
       'ANN-based ML app that predicts student pass/fail outcomes from study habits and provides actionable recommendations.',
     tags: ['Python', 'Streamlit', 'Scikit-learn', 'ANN', 'Matplotlib'],
     href: 'https://github.com/Ankitsingh2820/Student_performance',
-    live: 'https://ankitsingh2820-student-performance-app-demo.streamlit.app',
+    live: 'https://studentperformance-ylysvu7p9gdp7xfmfxyvxj.streamlit.app/',
   },
   {
     title: 'CodeShare',
