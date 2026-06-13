@@ -53,12 +53,17 @@ const PROJECTS = [
 
 function ProjectCard({ project }) {
   const reduced = useReducedMotion()
+  const primaryHref = project.live || project.href
   return (
-    <motion.div
+    <motion.a
+      href={primaryHref}
+      target="_blank"
+      rel="noopener noreferrer"
       whileHover={reduced ? {} : { y: -4 }}
-      className="group relative bg-panel p-8 overflow-hidden flex flex-col"
+      className="group relative bg-panel p-8 overflow-hidden flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-inset"
     >
       <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-signal transition-all duration-300 group-hover:w-full" />
+      <span aria-hidden="true" className="absolute top-8 right-8 text-muted group-hover:text-signal transition-colors text-lg">→</span>
       <h3 className="font-display text-xl font-semibold text-bone mb-3 pr-8">
         {project.title}
       </h3>
@@ -75,7 +80,7 @@ function ProjectCard({ project }) {
           </span>
         ))}
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4" onClick={(e) => e.stopPropagation()}>
         {project.live && (
           <a
             href={project.live}
@@ -95,7 +100,7 @@ function ProjectCard({ project }) {
           GitHub
         </a>
       </div>
-    </motion.div>
+    </motion.a>
   )
 }
 
