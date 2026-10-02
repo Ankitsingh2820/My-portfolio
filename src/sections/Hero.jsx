@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import PipelineAnimation from '../components/PipelineAnimation'
 import FloatingShapes from '../components/FloatingShapes'
+import ankitPhoto from '../assets/ankit.jpg'
 
 export default function Hero() {
   const reduced = useReducedMotion()
@@ -84,9 +85,11 @@ export default function Hero() {
 
           <div className="relative">
             <div className="relative glass rounded-3xl p-8 md:p-10 shadow-glow-sm">
-              <div className="mx-auto w-28 h-28 md:w-32 md:h-32 rounded-full glass-strong flex items-center justify-center shadow-glow">
-                <span className="font-display font-bold text-4xl text-gradient">AK</span>
-              </div>
+              <img
+                src={ankitPhoto}
+                alt="Ankit Kumar"
+                className="mx-auto w-28 h-28 md:w-32 md:h-32 rounded-full object-cover shadow-glow ring-2 ring-cyan/40"
+              />
               <p className="text-center font-display text-bone font-semibold text-lg mt-5">
                 Ankit Kumar
               </p>

@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
+import ankitPhoto from '../assets/ankit.jpg'
 
 const EDUCATION = [
   {
@@ -57,9 +58,11 @@ export default function About() {
           viewport={{ once: true, margin: '-80px' }}
           className="glass rounded-3xl p-8 md:p-10 shadow-glass"
         >
-          <div className="w-16 h-16 rounded-2xl glass-strong flex items-center justify-center shadow-glow-sm mb-6">
-            <span className="font-display font-bold text-xl text-gradient">AK</span>
-          </div>
+          <img
+            src={ankitPhoto}
+            alt="Ankit Kumar"
+            className="w-16 h-16 rounded-2xl object-cover shadow-glow-sm mb-6 ring-1 ring-cyan/40"
+          />
           <p className="font-sans text-bone leading-relaxed mb-8">
             AI Engineer focused on building scalable AI agents — multi-agent orchestration,
             RAG and knowledge-graph retrieval, and agent evaluation platforms that measure
