@@ -8,7 +8,7 @@ test('renders section title', () => {
 
 test('renders bio text', () => {
   render(<About />)
-  expect(screen.getByText(/scalable ETL pipelines/i)).toBeInTheDocument()
+  expect(screen.getByText(/scalable AI agents/i)).toBeInTheDocument()
 })
 
 test('renders all education entries', () => {

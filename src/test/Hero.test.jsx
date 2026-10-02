@@ -5,22 +5,22 @@ vi.mock('../components/PipelineAnimation', () => ({
   default: () => <div data-testid="pipeline" />,
 }))
 
-test('renders all three headline lines', () => {
+test('renders headline lines including name', () => {
   render(<Hero />)
-  expect(screen.getByText('I build pipelines')).toBeInTheDocument()
-  expect(screen.getByText('that move data —')).toBeInTheDocument()
-  expect(screen.getByText('and AI that uses it.')).toBeInTheDocument()
+  expect(screen.getByText('I build AI agents')).toBeInTheDocument()
+  expect(screen.getByText('that scale in production —')).toBeInTheDocument()
+  expect(screen.getByText('Ankit Kumar.')).toBeInTheDocument()
 })
 
 test('renders eyebrow text', () => {
   render(<Hero />)
-  expect(screen.getByText('Data & AI Engineer — India')).toBeInTheDocument()
+  expect(screen.getByText(/AI Engineer/)).toBeInTheDocument()
 })
 
-test('renders View work and Get in touch buttons', () => {
+test('renders View Projects and Contact Me buttons', () => {
   render(<Hero />)
-  expect(screen.getByRole('button', { name: /view work/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /get in touch/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /view projects/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /contact me/i })).toBeInTheDocument()
 })
 
 test('renders pipeline animation', () => {

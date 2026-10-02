@@ -28,7 +28,7 @@ export default function PipelineAnimation() {
         'circle'
       )
       circle.setAttribute('r', '3')
-      circle.setAttribute('fill', '#E8A33D')
+      circle.setAttribute('fill', '#3FE9DA')
       circle.setAttribute('opacity', '0')
       svg.appendChild(circle)
       return {
@@ -81,7 +81,7 @@ export default function PipelineAnimation() {
             y1={CY}
             x2={(i + 1) * (NODE_W + GAP)}
             y2={CY}
-            stroke="#2A2E39"
+            stroke="rgba(159,214,210,0.2)"
             strokeWidth="1.5"
           />
         ))}
@@ -94,16 +94,16 @@ export default function PipelineAnimation() {
               y={CY - NODE_H / 2}
               width={NODE_W}
               height={NODE_H}
-              rx="2"
-              fill="#1B1E27"
-              stroke="#2A2E39"
+              rx="8"
+              fill="rgba(255,255,255,0.04)"
+              stroke="rgba(159,214,210,0.25)"
               strokeWidth="1"
             />
             <text
               x={i * (NODE_W + GAP) + NODE_W / 2}
               y={CY + 5}
               textAnchor="middle"
-              fill="#8A8F9C"
+              fill="#9BF3EA"
               fontFamily="JetBrains Mono, monospace"
               fontSize="11"
             >

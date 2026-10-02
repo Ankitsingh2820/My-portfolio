@@ -29,17 +29,17 @@ export default function About() {
   return (
     <section
       id="about"
-      className="px-8 md:px-20 py-32 max-w-[1200px] mx-auto border-t border-hairline"
+      className="relative px-4 md:px-8 py-16 max-w-[1400px] mx-auto"
     >
       <motion.div
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: '-100px' }}
-        className="mb-12"
+        className="mb-12 px-2 md:px-6"
       >
-        <p className="font-mono text-xs uppercase tracking-widest text-muted mb-4">
-          03 — about
+        <p className="font-mono text-xs uppercase tracking-widest text-cyan mb-4">
+          01 — about
         </p>
         <h2
           className="font-display font-bold text-bone"
@@ -49,22 +49,27 @@ export default function About() {
         </h2>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-80px' }}
+          className="glass rounded-3xl p-8 md:p-10 shadow-glass"
         >
+          <div className="w-16 h-16 rounded-2xl glass-strong flex items-center justify-center shadow-glow-sm mb-6">
+            <span className="font-display font-bold text-xl text-gradient">AK</span>
+          </div>
           <p className="font-sans text-bone leading-relaxed mb-8">
-            Data Engineer and AI Engineer with experience building scalable ETL pipelines,
-            AI-powered applications, and workflow-automation systems using Python, SQL,
-            MongoDB, and modern AI frameworks. I build Retrieval-Augmented Generation (RAG)
-            systems, REST APIs, and data-driven solutions for analytics and operational
-            optimization. I enjoy turning messy operational data into reliable, automated
+            AI Engineer focused on building scalable AI agents — multi-agent orchestration,
+            RAG and knowledge-graph retrieval, and agent evaluation platforms that measure
+            quality, cost, and latency in production, not just in a demo. I ship the
+            infrastructure underneath the agent, too: async workers, vector and graph stores,
+            REST APIs, and CI pipelines built with Python, FastAPI, SQL, MongoDB, and modern
+            AI frameworks. I enjoy turning messy, real-world problems into reliable, automated
             systems — and pairing that with LLM-powered tooling that&apos;s actually useful.
           </p>
-          <span className="font-mono text-xs text-signal border border-signal px-3 py-1.5">
+          <span className="inline-block font-mono text-xs text-cyan border border-cyan/40 rounded-full px-4 py-2">
             200+ LeetCode problems solved
           </span>
         </motion.div>
@@ -74,13 +79,14 @@ export default function About() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-80px' }}
+          className="glass rounded-3xl p-8 md:p-10 shadow-glass"
         >
           <p className="font-mono text-xs uppercase tracking-widest text-muted mb-6">
             Education
           </p>
           <ul className="space-y-6">
             {EDUCATION.map(({ degree, school, result }) => (
-              <li key={school} className="border-l-2 border-hairline pl-5">
+              <li key={school} className="border-l-2 border-cyan/30 pl-5">
                 <p className="font-sans text-bone text-sm leading-snug">{degree}</p>
                 <p className="font-mono text-xs text-muted mt-1">
                   {school}

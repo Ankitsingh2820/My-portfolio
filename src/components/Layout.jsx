@@ -45,7 +45,7 @@ export default function Layout({ children, sections }) {
   return (
     <>
       <NavRail sections={sections} activeSection={activeSection} />
-      <main className="ml-0 md:ml-20">{children}</main>
+      <main className="pt-28 md:pt-32">{children}</main>
     </>
   )
 }

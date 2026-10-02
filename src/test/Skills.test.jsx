@@ -8,7 +8,7 @@ test('renders section title', () => {
 
 test('renders all five skill group labels', () => {
   render(<Skills />)
-  expect(screen.getByText('AI & ML')).toBeInTheDocument()
+  expect(screen.getByText('AI & Agents')).toBeInTheDocument()
   expect(screen.getByText('Data & Programming')).toBeInTheDocument()
   expect(screen.getByText('Backend & APIs')).toBeInTheDocument()
   expect(screen.getByText('Databases & Cloud')).toBeInTheDocument()
@@ -18,6 +18,7 @@ test('renders all five skill group labels', () => {
 test('renders specific skill pills', () => {
   render(<Skills />)
   expect(screen.getByText('RAG')).toBeInTheDocument()
+  expect(screen.getByText('Multi-Agent Systems')).toBeInTheDocument()
   expect(screen.getByText('Python')).toBeInTheDocument()
   expect(screen.getByText('Docker')).toBeInTheDocument()
   expect(screen.getByText('AWS')).toBeInTheDocument()

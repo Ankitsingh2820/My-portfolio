@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
+import { IconArrowRight, IconSend } from '../components/icons'
 
 export default function Contact() {
   const reduced = useReducedMotion()
-  const [sent, setSent] = useState(false)
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [error, setError] = useState(null)
+  const [form, setForm] = useState({ name: '', email: '', message: '', company: '' })
 
   const fadeUp = {
     hidden: { opacity: reduced ? 1 : 0, y: reduced ? 0 : 30 },
@@ -15,30 +17,52 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Portfolio enquiry from ${form.name}`)
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    )
-    window.location.href = `mailto:ankitsingh41201@gmail.com?subject=${subject}&body=${body}`
-    setSent(true)
+    setError(null)
+
+    const workerUrl = import.meta.env.VITE_WORKER_URL || ''
+
+    if (!workerUrl) {
+      const subject = encodeURIComponent(`Portfolio enquiry from ${form.name}`)
+      const body = encodeURIComponent(
+        `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
+      )
+      window.location.href = `mailto:ankitsingh41201@gmail.com?subject=${subject}&body=${body}`
+      setStatus('sent')
+      return
+    }
+
+    setStatus('sending')
+    try {
+      const res = await fetch(`${workerUrl}/contact`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(data?.error || 'Something went wrong.')
+      setStatus('sent')
+    } catch (err) {
+      setStatus('error')
+      setError(err.message || 'Something went wrong. Try again, or email directly.')
+    }
   }
 
   return (
     <section
       id="contact"
-      className="px-8 md:px-20 py-32 max-w-[1200px] mx-auto border-t border-hairline"
+      className="relative px-4 md:px-8 py-16 max-w-[1400px] mx-auto"
     >
       <motion.div
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: '-100px' }}
-        className="mb-12"
+        className="mb-12 px-2 md:px-6"
       >
-        <p className="font-mono text-xs uppercase tracking-widest text-muted mb-4">
-          04 — contact
+        <p className="font-mono text-xs uppercase tracking-widest text-cyan mb-4">
+          07 — contact
         </p>
         <h2
           className="font-display font-bold text-bone"
@@ -48,7 +72,7 @@ export default function Contact() {
         </h2>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+      <div className="glass rounded-[2rem] p-8 md:p-14 shadow-glass grid grid-cols-1 md:grid-cols-2 gap-16">
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -57,28 +81,28 @@ export default function Contact() {
         >
           <a
             href="mailto:ankitsingh41201@gmail.com"
-            className="font-display text-signal font-semibold hover:brightness-110 transition block mb-8 break-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal"
+            className="font-display text-gradient font-semibold hover:brightness-110 transition block mb-8 break-all focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
             style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.75rem)' }}
           >
             ankitsingh41201@gmail.com
           </a>
           <p className="font-mono text-sm text-muted mb-6">+91 7004192406</p>
-          <div className="flex gap-6">
+          <div className="flex gap-3">
             <a
               href="https://www.linkedin.com/in/ankit-kumar-bb9474237"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-sm text-muted hover:text-signal-cyan transition focus:outline-none focus-visible:ring-2 focus-visible:ring-signal"
+              className="inline-flex items-center gap-1.5 font-mono text-sm text-muted hover:text-cyan glass rounded-full px-4 py-2 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
             >
-              LinkedIn →
+              LinkedIn <IconArrowRight width={14} height={14} />
             </a>
             <a
               href="https://github.com/Ankitsingh2820"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-sm text-muted hover:text-signal-cyan transition focus:outline-none focus-visible:ring-2 focus-visible:ring-signal"
+              className="inline-flex items-center gap-1.5 font-mono text-sm text-muted hover:text-cyan glass rounded-full px-4 py-2 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
             >
-              GitHub →
+              GitHub <IconArrowRight width={14} height={14} />
             </a>
           </div>
         </motion.div>
@@ -98,7 +122,7 @@ export default function Contact() {
             required
             value={form.name}
             onChange={handleChange}
-            className="w-full bg-panel border border-hairline px-4 py-3 font-sans text-bone text-sm placeholder:text-muted focus:outline-none focus:border-muted"
+            className="w-full glass rounded-xl px-4 py-3 font-sans text-bone text-sm placeholder:text-muted focus:outline-none focus:border-cyan/60"
           />
           <input
             type="email"
@@ -107,7 +131,7 @@ export default function Contact() {
             required
             value={form.email}
             onChange={handleChange}
-            className="w-full bg-panel border border-hairline px-4 py-3 font-sans text-bone text-sm placeholder:text-muted focus:outline-none focus:border-muted"
+            className="w-full glass rounded-xl px-4 py-3 font-sans text-bone text-sm placeholder:text-muted focus:outline-none focus:border-cyan/60"
           />
           <textarea
             name="message"
@@ -116,14 +140,35 @@ export default function Contact() {
             rows={5}
             value={form.message}
             onChange={handleChange}
-            className="w-full bg-panel border border-hairline px-4 py-3 font-sans text-bone text-sm placeholder:text-muted focus:outline-none focus:border-muted resize-none"
+            className="w-full glass rounded-xl px-4 py-3 font-sans text-bone text-sm placeholder:text-muted focus:outline-none focus:border-cyan/60 resize-none"
+          />
+          {/* Honeypot — hidden from real visitors, bots tend to fill every field. */}
+          <input
+            type="text"
+            name="company"
+            value={form.company}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="absolute -left-[9999px] w-px h-px opacity-0"
           />
           <button
             type="submit"
-            className="w-full bg-signal text-ink font-mono text-sm uppercase tracking-widest py-3 hover:brightness-110 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-signal"
+            disabled={status === 'sending'}
+            className="w-full inline-flex items-center justify-center gap-2 bg-cyan text-ink font-mono text-sm uppercase tracking-widest rounded-xl py-3.5 hover:brightness-110 hover:shadow-glow transition disabled:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
           >
-            {sent ? 'Sent ✓' : 'Send message'}
+            {status === 'sent' && 'Sent ✓'}
+            {status === 'sending' && 'Sending…'}
+            {(status === 'idle' || status === 'error') && (
+              <>
+                Send message <IconSend width={14} height={14} />
+              </>
+            )}
           </button>
+          {status === 'error' && error && (
+            <p className="text-xs text-signal">{error}</p>
+          )}
         </motion.form>
       </div>
     </section>

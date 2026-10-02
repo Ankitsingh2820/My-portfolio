@@ -3,16 +3,16 @@ import Work from '../sections/Work'
 
 test('renders section title', () => {
   render(<Work />)
-  expect(screen.getByText("Things I've built")).toBeInTheDocument()
+  expect(screen.getByText("Agents I've built")).toBeInTheDocument()
 })
 
 test('renders all project cards', () => {
   render(<Work />)
+  expect(screen.getByText('AgentEval')).toBeInTheDocument()
+  expect(screen.getByText('KnowledgeForge')).toBeInTheDocument()
+  expect(screen.getByText('LightNote De-Editor')).toBeInTheDocument()
+  expect(screen.getByText('PlacementOS')).toBeInTheDocument()
   expect(screen.getByText('RAG Gemini AI System')).toBeInTheDocument()
-  expect(screen.getByText('AI Quiz & Summarizer')).toBeInTheDocument()
-  expect(screen.getByText('CodeShare')).toBeInTheDocument()
-  expect(screen.getByText('GoHolidays')).toBeInTheDocument()
-  expect(screen.getByText('Student Performance Predictor')).toBeInTheDocument()
   expect(screen.getByText('Science Teacher Tool')).toBeInTheDocument()
 })
 

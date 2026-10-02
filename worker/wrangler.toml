@@ -1,0 +1,17 @@
+name = "ankit-portfolio-chat"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+[vars]
+GEMINI_MODEL = "gemini-3.8-flash"
+# Comma-separated list of origins allowed to call this worker.
+ALLOWED_ORIGINS = "https://ankitsingh2820.github.io,http://localhost:5173,http://localhost:5174,http://localhost:5183,http://localhost:5184"
+CONTACT_TO_EMAIL = "ankitsingh41201@gmail.com"
+# Must be onboarding@resend.dev unless you've verified your own sending domain in Resend.
+CONTACT_FROM_EMAIL = "Portfolio Contact <onboarding@resend.dev>"
+
+# Created with: npx wrangler kv namespace create RATE_LIMIT
+# Then paste the returned id below.
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "8e7680037588491ca24b841d7f842cfb"
