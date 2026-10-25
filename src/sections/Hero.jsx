@@ -131,19 +131,6 @@ export default function Hero() {
                 in legal-tech
               </p>
             </motion.div>
-
-            <motion.div
-              className="hidden sm:block absolute -bottom-4 -left-3 md:-left-6 glass rounded-2xl px-4 py-3 shadow-glow-sm max-w-[160px] border border-dashed border-signal/50"
-              animate={reduced ? {} : { y: [0, 8, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-            >
-              <p className="font-display font-bold text-signal text-sm leading-snug">
-                TODO
-              </p>
-              <p className="font-sans text-[13px] text-muted mt-0.5">
-                add a client metric
-              </p>
-            </motion.div>
           </div>
         </div>
       </div>
