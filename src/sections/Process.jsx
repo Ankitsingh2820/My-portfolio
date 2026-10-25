@@ -1,11 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion'
 
 const STEPS = [
-  { n: '01', title: 'Discover & Define', desc: 'Clarify the problem, success metrics, and data available.' },
-  { n: '02', title: 'Data Collection & Prep', desc: 'Ingest, clean, and pipeline raw data into a usable form.' },
-  { n: '03', title: 'Model Development', desc: 'Prototype agents and models — tool use, retrieval, orchestration.' },
-  { n: '04', title: 'Evaluation & Tuning', desc: 'Trace every call, benchmark against a baseline, stress-test.' },
-  { n: '05', title: 'Deploy & Monitor', desc: 'Ship behind an API, containerize, and track it in production.' },
+  { n: '01', title: 'Discovery Call & Scoping', desc: 'A short call to understand the problem, your data, and constraints.' },
+  { n: '02', title: 'Fixed Proposal', desc: 'A clear, fixed-price proposal: what gets built, the timeline, what’s out of scope.' },
+  { n: '03', title: 'Build, With Weekly Demos', desc: 'Short build cycles with a demo every week, so there are no surprises.' },
+  { n: '04', title: 'Evaluation & Handover', desc: 'Tested against real cases before anything ships, with results documented.' },
+  { n: '05', title: 'Deploy & Support', desc: 'Deployed into your environment, with support after launch.' },
 ]
 
 export default function Process() {
@@ -30,16 +30,16 @@ export default function Process() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: '-100px' }}
-        className="mb-16 px-2 md:px-6"
+        className="mb-12 px-2 md:px-6"
       >
-        <p className="font-mono text-xs uppercase tracking-widest text-cyan mb-4">
-          05 — process
+        <p className="font-mono text-[13px] uppercase tracking-widest text-cyan mb-4">
+          03 — process
         </p>
         <h2
           className="font-display font-bold text-bone"
-          style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
+          style={{ fontSize: 'clamp(1.8rem, 4vw, 3.2rem)' }}
         >
-          How I work
+          How we&apos;ll work together
         </h2>
       </motion.div>
 
@@ -58,14 +58,14 @@ export default function Process() {
               viewport={{ once: true, margin: '-80px' }}
               className="relative flex md:flex-col items-center md:items-start gap-4 md:gap-0"
             >
-              <span className="relative z-10 w-11 h-11 rounded-full glass-strong flex items-center justify-center font-mono text-xs text-cyan shrink-0 shadow-glow-sm">
+              <span className="relative z-10 w-11 h-11 rounded-full glass-strong flex items-center justify-center font-mono text-[13px] text-cyan shrink-0 shadow-glow-sm">
                 {n}
               </span>
               <div>
                 <h3 className="font-display text-bone font-semibold text-sm md:mt-4">
                   {title}
                 </h3>
-                <p className="font-sans text-muted text-xs leading-relaxed mt-2">
+                <p className="font-sans text-muted text-[13px] leading-relaxed mt-2">
                   {desc}
                 </p>
               </div>

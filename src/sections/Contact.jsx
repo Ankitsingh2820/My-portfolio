@@ -1,6 +1,13 @@
 import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { IconArrowRight, IconSend } from '../components/icons'
+import { BOOKING_URL, PHONE_DISPLAY, PHONE_HREF, EMAIL, LINKEDIN_URL, GITHUB_URL } from '../constants'
+
+const NEXT_STEPS = [
+  'I reply within 24 hours.',
+  'A short call to understand what you need.',
+  'A fixed, scoped proposal — no surprise costs.',
+]
 
 export default function Contact() {
   const reduced = useReducedMotion()
@@ -24,11 +31,11 @@ export default function Contact() {
     const workerUrl = import.meta.env.VITE_WORKER_URL || ''
 
     if (!workerUrl) {
-      const subject = encodeURIComponent(`Portfolio enquiry from ${form.name}`)
+      const subject = encodeURIComponent(`Project enquiry from ${form.name}`)
       const body = encodeURIComponent(
         `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
       )
-      window.location.href = `mailto:ankitsingh41201@gmail.com?subject=${subject}&body=${body}`
+      window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
       setStatus('sent')
       return
     }
@@ -61,14 +68,14 @@ export default function Contact() {
         viewport={{ once: true, margin: '-100px' }}
         className="mb-12 px-2 md:px-6"
       >
-        <p className="font-mono text-xs uppercase tracking-widest text-cyan mb-4">
-          07 — contact
+        <p className="font-mono text-[13px] uppercase tracking-widest text-cyan mb-4">
+          06 — contact
         </p>
         <h2
           className="font-display font-bold text-bone"
-          style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
+          style={{ fontSize: 'clamp(1.8rem, 4vw, 3.2rem)' }}
         >
-          Let&apos;s build something
+          Let&apos;s talk about your project
         </h2>
       </motion.div>
 
@@ -79,28 +86,51 @@ export default function Contact() {
           whileInView="show"
           viewport={{ once: true, margin: '-80px' }}
         >
+          <p className="font-sans text-[13px] text-muted mb-4">What happens next</p>
+          <ul className="space-y-3 mb-8">
+            {NEXT_STEPS.map((step, i) => (
+              <li key={step} className="flex items-start gap-3">
+                <span className="w-6 h-6 rounded-full glass-strong flex items-center justify-center font-sans text-[13px] text-cyan shrink-0 mt-0.5">
+                  {i + 1}
+                </span>
+                <span className="font-sans text-bone text-base leading-relaxed">{step}</span>
+              </li>
+            ))}
+          </ul>
+
           <a
-            href="mailto:ankitsingh41201@gmail.com"
-            className="font-display text-gradient font-semibold hover:brightness-110 transition block mb-8 break-all focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
-            style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.75rem)' }}
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cyan text-ink font-sans text-base font-semibold hover:brightness-110 hover:shadow-glow transition mb-8 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
           >
-            ankitsingh41201@gmail.com
+            Book a call <IconArrowRight width={16} height={16} />
           </a>
-          <p className="font-mono text-sm text-muted mb-6">+91 7004192406</p>
+
+          <a
+            href={`mailto:${EMAIL}`}
+            className="font-display text-gradient font-semibold hover:brightness-110 transition block mb-2 break-all focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+            style={{ fontSize: 'clamp(1rem, 2.2vw, 1.4rem)' }}
+          >
+            {EMAIL}
+          </a>
+          <a href={PHONE_HREF} className="font-sans text-sm text-muted mb-6 block hover:text-cyan transition-colors">
+            {PHONE_DISPLAY}
+          </a>
           <div className="flex gap-3">
             <a
-              href="https://www.linkedin.com/in/ankit-kumar-bb9474237"
+              href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-mono text-sm text-muted hover:text-cyan glass rounded-full px-4 py-2 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+              className="inline-flex items-center gap-1.5 font-sans text-sm text-muted hover:text-cyan glass rounded-full px-4 py-2 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
             >
               LinkedIn <IconArrowRight width={14} height={14} />
             </a>
             <a
-              href="https://github.com/Ankitsingh2820"
+              href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-mono text-sm text-muted hover:text-cyan glass rounded-full px-4 py-2 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+              className="inline-flex items-center gap-1.5 font-sans text-sm text-muted hover:text-cyan glass rounded-full px-4 py-2 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
             >
               GitHub <IconArrowRight width={14} height={14} />
             </a>
@@ -135,7 +165,7 @@ export default function Contact() {
           />
           <textarea
             name="message"
-            placeholder="Message"
+            placeholder="What do you want to build? Rough timeline and budget help too."
             required
             rows={5}
             value={form.message}
@@ -156,7 +186,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={status === 'sending'}
-            className="w-full inline-flex items-center justify-center gap-2 bg-cyan text-ink font-mono text-sm uppercase tracking-widest rounded-xl py-3.5 hover:brightness-110 hover:shadow-glow transition disabled:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+            className="w-full inline-flex items-center justify-center gap-2 bg-cyan text-ink font-sans text-base font-semibold rounded-xl py-3.5 hover:brightness-110 hover:shadow-glow transition disabled:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
           >
             {status === 'sent' && 'Sent ✓'}
             {status === 'sending' && 'Sending…'}
@@ -167,7 +197,7 @@ export default function Contact() {
             )}
           </button>
           {status === 'error' && error && (
-            <p className="text-xs text-signal">{error}</p>
+            <p className="text-[13px] text-signal">{error}</p>
           )}
         </motion.form>
       </div>

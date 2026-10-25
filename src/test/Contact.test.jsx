@@ -9,7 +9,7 @@ afterEach(() => {
 
 test('renders section title', () => {
   render(<Contact />)
-  expect(screen.getByText("Let's build something")).toBeInTheDocument()
+  expect(screen.getByText("Let's talk about your project")).toBeInTheDocument()
 })
 
 test('renders email as a mailto link', () => {
@@ -34,7 +34,7 @@ test('falls back to mailto and shows Sent when no worker is configured', async (
   render(<Contact />)
   await user.type(screen.getByPlaceholderText('Name'), 'Test User')
   await user.type(screen.getByPlaceholderText('Email'), 'test@test.com')
-  await user.type(screen.getByPlaceholderText('Message'), 'Hello!')
+  await user.type(screen.getByPlaceholderText(/what do you want to build/i), 'Hello!')
   await user.click(screen.getByRole('button', { name: /send message/i }))
 
   expect(screen.getByRole('button', { name: /sent/i })).toBeInTheDocument()
@@ -53,7 +53,7 @@ test('posts to the worker and shows Sent when configured', async () => {
   render(<Contact />)
   await user.type(screen.getByPlaceholderText('Name'), 'Test User')
   await user.type(screen.getByPlaceholderText('Email'), 'test@test.com')
-  await user.type(screen.getByPlaceholderText('Message'), 'Hello!')
+  await user.type(screen.getByPlaceholderText(/what do you want to build/i), 'Hello!')
   await user.click(screen.getByRole('button', { name: /send message/i }))
 
   await waitFor(() => {
@@ -77,7 +77,7 @@ test('shows an error message when the worker request fails', async () => {
   render(<Contact />)
   await user.type(screen.getByPlaceholderText('Name'), 'Test User')
   await user.type(screen.getByPlaceholderText('Email'), 'test@test.com')
-  await user.type(screen.getByPlaceholderText('Message'), 'Hello!')
+  await user.type(screen.getByPlaceholderText(/what do you want to build/i), 'Hello!')
   await user.click(screen.getByRole('button', { name: /send message/i }))
 
   await waitFor(() => {

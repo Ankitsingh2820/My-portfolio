@@ -3,17 +3,26 @@ import Work from '../sections/Work'
 
 test('renders section title', () => {
   render(<Work />)
-  expect(screen.getByText("Agents I've built")).toBeInTheDocument()
+  expect(screen.getByText('Selected work')).toBeInTheDocument()
 })
 
-test('renders all project cards', () => {
+test('renders the Rest The Case case study', () => {
   render(<Work />)
-  expect(screen.getByText('AgentEval')).toBeInTheDocument()
-  expect(screen.getByText('KnowledgeForge')).toBeInTheDocument()
-  expect(screen.getByText('LightNote De-Editor')).toBeInTheDocument()
-  expect(screen.getByText('PlacementOS')).toBeInTheDocument()
-  expect(screen.getByText('RAG Gemini AI System')).toBeInTheDocument()
-  expect(screen.getByText('Science Teacher Tool')).toBeInTheDocument()
+  expect(screen.getByText('Rest The Case (Lexicon Group)')).toBeInTheDocument()
+  expect(screen.getByText(/Private client work/i)).toBeInTheDocument()
+})
+
+test('renders all project cards in order', () => {
+  render(<Work />)
+  const titles = ['KnowledgeForge', 'AgentEval', 'RAG Gemini AI System', 'LightNote De-Editor', 'PlacementOS', 'Science Teacher Tool']
+  titles.forEach((title) => {
+    expect(screen.getByText(title)).toBeInTheDocument()
+  })
+})
+
+test('each project has a "Useful for" line', () => {
+  render(<Work />)
+  expect(screen.getAllByText(/Useful for:/i).length).toBe(6)
 })
 
 test('each project has a GitHub link', () => {

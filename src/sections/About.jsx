@@ -1,22 +1,30 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import ankitPhoto from '../assets/ankit.jpg'
+import { CGPA } from '../constants'
 
 const EDUCATION = [
   {
     degree: 'B.Tech, Computer Science & Engineering',
     school: 'DIT University, Dehradun',
-    result: 'CGPA 7.07',
+    result: `CGPA ${CGPA}`,
   },
   {
     degree: 'Diploma, Electrical & Electronics Engineering',
     school: 'BIT Mesra, Ranchi',
     result: '83.5%',
   },
-  {
-    degree: 'Class XII (CBSE) 71.25% · Class X (CBSE) 91%',
-    school: 'DAV Public School, Jamshedpur',
-    result: '',
-  },
+]
+
+const BULLETS = [
+  'Grounded answers — retrieval and citations over guesswork, so outputs trace back to source documents.',
+  'Production-minded — evaluation, monitoring, and fallback built in from day one, not bolted on later.',
+  'A focus on document-heavy industries — legal, insurance, finance, and real estate workflows.',
+]
+
+const CORE_STACK = [
+  'Python', 'FastAPI', 'LangChain', 'LangGraph', 'RAG',
+  'FAISS', 'Qdrant', 'OpenAI API', 'Gemini API', 'Docker',
+  'PostgreSQL', 'MongoDB', 'React', 'AWS', 'CI/CD',
 ]
 
 export default function About() {
@@ -39,12 +47,12 @@ export default function About() {
         viewport={{ once: true, margin: '-100px' }}
         className="mb-12 px-2 md:px-6"
       >
-        <p className="font-mono text-xs uppercase tracking-widest text-cyan mb-4">
-          01 — about
+        <p className="font-mono text-[13px] uppercase tracking-widest text-cyan mb-4">
+          04 — about
         </p>
         <h2
           className="font-display font-bold text-bone"
-          style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
+          style={{ fontSize: 'clamp(1.8rem, 4vw, 3.2rem)' }}
         >
           A bit about me
         </h2>
@@ -63,18 +71,22 @@ export default function About() {
             alt="Ankit Kumar"
             className="w-16 h-16 rounded-2xl object-cover shadow-glow-sm mb-6 ring-1 ring-cyan/40"
           />
-          <p className="font-sans text-bone leading-relaxed mb-8">
-            AI Engineer focused on building scalable AI agents — multi-agent orchestration,
-            RAG and knowledge-graph retrieval, and agent evaluation platforms that measure
-            quality, cost, and latency in production, not just in a demo. I ship the
-            infrastructure underneath the agent, too: async workers, vector and graph stores,
-            REST APIs, and CI pipelines built with Python, FastAPI, SQL, MongoDB, and modern
-            AI frameworks. I enjoy turning messy, real-world problems into reliable, automated
-            systems — and pairing that with LLM-powered tooling that&apos;s actually useful.
+          <p className="font-sans text-bone leading-relaxed mb-6">
+            I&apos;m an AI engineer who builds production RAG systems, document AI,
+            and AI agents for businesses &mdash; currently AI Developer at{' '}
+            <strong className="font-semibold">Rest The Case (Lexicon Group)</strong>,
+            a legal-tech platform, where I ship the AI features lawyers use daily.
           </p>
-          <span className="inline-block font-mono text-xs text-cyan border border-cyan/40 rounded-full px-4 py-2">
-            200+ LeetCode problems solved
-          </span>
+          <ul className="space-y-3">
+            {BULLETS.map((b) => (
+              <li
+                key={b}
+                className="font-sans text-bone text-base leading-relaxed pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-cyan"
+              >
+                {b}
+              </li>
+            ))}
+          </ul>
         </motion.div>
 
         <motion.div
@@ -82,22 +94,36 @@ export default function About() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-80px' }}
-          className="glass rounded-3xl p-8 md:p-10 shadow-glass"
+          className="glass rounded-3xl p-8 md:p-10 shadow-glass flex flex-col"
         >
-          <p className="font-mono text-xs uppercase tracking-widest text-muted mb-6">
+          <p className="font-sans text-[13px] text-muted mb-5">
             Education
           </p>
-          <ul className="space-y-6">
+          <ul className="space-y-5 mb-8">
             {EDUCATION.map(({ degree, school, result }) => (
               <li key={school} className="border-l-2 border-cyan/30 pl-5">
                 <p className="font-sans text-bone text-sm leading-snug">{degree}</p>
-                <p className="font-mono text-xs text-muted mt-1">
+                <p className="font-sans text-[13px] text-muted mt-1">
                   {school}
                   {result ? ` · ${result}` : ''}
                 </p>
               </li>
             ))}
           </ul>
+
+          <p className="font-sans text-[13px] text-muted mb-3">
+            Core stack
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {CORE_STACK.map((item) => (
+              <span
+                key={item}
+                className="font-sans text-[13px] text-muted border border-hairline rounded-full px-2.5 py-1"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

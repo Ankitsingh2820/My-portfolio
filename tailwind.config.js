@@ -8,7 +8,7 @@ export default {
         'ink-2': '#0A1220',
         panel: '#0D1526',
         bone: '#EAF4F4',
-        muted: '#7E96A6',
+        muted: '#9BB2C2',
         signal: '#E8A33D',
         'signal-cyan': '#3FE9DA',
         cyan: '#3FE9DA',

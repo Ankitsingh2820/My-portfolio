@@ -4,13 +4,13 @@ import { IconSparkle, IconSend } from '../components/icons'
 
 const GREETING = {
   role: 'assistant',
-  text: "Hi! I'm Ankit's portfolio assistant. Ask me about his projects, skills, or experience.",
+  text: "Hi! I'm Ankit's AI assistant. Ask me about his services, past work, or how a project would typically run.",
 }
 
 const SUGGESTIONS = [
-  'What did Ankit build?',
-  'What AI/ML skills does he have?',
-  'Why should we hire him?',
+  'Can you build a chatbot on my company’s documents?',
+  'What does an LLM cost audit involve?',
+  'How do projects usually work?',
 ]
 
 export default function AskAI() {
@@ -84,17 +84,18 @@ export default function AskAI() {
         viewport={{ once: true, margin: '-100px' }}
         className="mb-12 px-2 md:px-6"
       >
-        <p className="font-mono text-xs uppercase tracking-widest text-cyan mb-4">
-          06 — ask ai
+        <p className="font-mono text-[13px] uppercase tracking-widest text-cyan mb-4">
+          05 — ask ai
         </p>
         <h2
           className="font-display font-bold text-bone"
-          style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
+          style={{ fontSize: 'clamp(1.8rem, 4vw, 3.2rem)' }}
         >
           Ask my AI assistant
         </h2>
         <p className="font-sans text-muted text-base max-w-xl mt-4">
-          Trained on my real bio, skills, and projects — ask it anything you&apos;d ask me.
+          Trained on my real experience, services, and projects — ask it what
+          you&apos;d ask on a call.
         </p>
       </motion.div>
 
@@ -109,12 +110,15 @@ export default function AskAI() {
           <span className="w-9 h-9 rounded-xl glass-strong flex items-center justify-center text-cyan shrink-0">
             <IconSparkle width={16} height={16} />
           </span>
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-muted">
+          <p className="font-sans text-[13px] text-muted">
             Portfolio assistant
           </p>
         </div>
 
-        <div ref={scrollRef} className="h-[360px] overflow-y-auto space-y-3 pr-1 mb-4">
+        <div
+          ref={scrollRef}
+          className="max-h-[360px] min-h-[64px] overflow-y-auto space-y-3 pr-1 mb-4"
+        >
           {messages.map((m, i) => (
             <div
               key={i}
@@ -130,7 +134,7 @@ export default function AskAI() {
               Thinking…
             </div>
           )}
-          {error && <p className="text-xs text-signal">{error}</p>}
+          {error && <p className="text-[13px] text-signal">{error}</p>}
         </div>
 
         {messages.length < 2 && (
@@ -140,7 +144,7 @@ export default function AskAI() {
                 key={s}
                 type="button"
                 onClick={() => ask(s)}
-                className="font-mono text-xs text-muted border border-hairline rounded-full px-3 py-1.5 hover:text-cyan hover:border-cyan/50 transition-colors"
+                className="font-sans text-[13px] text-muted border border-hairline rounded-full px-3 py-1.5 hover:text-cyan hover:border-cyan/50 transition-colors"
               >
                 {s}
               </button>
@@ -153,7 +157,7 @@ export default function AskAI() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about a project, skill…"
+            placeholder="Ask about a service, project…"
             aria-label="Message"
             className="flex-1 glass rounded-full px-4 py-3 font-sans text-bone text-sm placeholder:text-muted focus:outline-none focus:border-cyan/60"
           />

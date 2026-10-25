@@ -11,23 +11,25 @@ test('renders section title and greeting', () => {
   render(<AskAI />)
   expect(screen.getByText('Ask my AI assistant')).toBeInTheDocument()
   expect(
-    screen.getByText(/ask me about his projects, skills, or experience/i)
+    screen.getByText(/ask me about his services, past work/i)
   ).toBeInTheDocument()
 })
 
-test('renders suggestion chips before the first message', () => {
+test('renders client-facing suggestion chips before the first message', () => {
   render(<AskAI />)
-  expect(screen.getByRole('button', { name: 'What did Ankit build?' })).toBeInTheDocument()
+  expect(
+    screen.getByRole('button', { name: 'How do projects usually work?' })
+  ).toBeInTheDocument()
 })
 
 test('shows a not-connected message when no worker is configured', async () => {
   vi.stubEnv('VITE_WORKER_URL', '')
   const user = userEvent.setup()
   render(<AskAI />)
-  await user.type(screen.getByLabelText('Message'), 'What did Ankit build?')
+  await user.type(screen.getByLabelText('Message'), 'How do projects usually work?')
   await user.click(screen.getByRole('button', { name: /send/i }))
 
-  expect(screen.getByText('What did Ankit build?')).toBeInTheDocument()
+  expect(screen.getByText('How do projects usually work?')).toBeInTheDocument()
   expect(screen.getByText(/isn't connected yet/i)).toBeInTheDocument()
 })
 
@@ -35,17 +37,17 @@ test('sends to the worker and renders the reply', async () => {
   vi.stubEnv('VITE_WORKER_URL', 'https://worker.example')
   const fetchMock = vi.fn().mockResolvedValue({
     ok: true,
-    json: async () => ({ reply: 'Ankit built AgentEval, a production agent-evaluation platform.' }),
+    json: async () => ({ reply: 'Projects start with a short discovery call and a fixed proposal.' }),
   })
   vi.stubGlobal('fetch', fetchMock)
 
   const user = userEvent.setup()
   render(<AskAI />)
-  await user.click(screen.getByRole('button', { name: 'What did Ankit build?' }))
+  await user.click(screen.getByRole('button', { name: 'How do projects usually work?' }))
 
   await waitFor(() => {
     expect(
-      screen.getByText('Ankit built AgentEval, a production agent-evaluation platform.')
+      screen.getByText('Projects start with a short discovery call and a fixed proposal.')
     ).toBeInTheDocument()
   })
   expect(fetchMock).toHaveBeenCalledWith(

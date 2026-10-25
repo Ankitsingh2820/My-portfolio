@@ -24,3 +24,7 @@ global.IntersectionObserver = class {
 // Return a stable ID but never fire the callback — keeps animation effects from running in tests
 global.requestAnimationFrame = () => 1
 global.cancelAnimationFrame = () => {}
+
+// jsdom doesn't implement scrollIntoView — nav links and CTA buttons call it
+// on click, so without a stub those tests throw "not a function".
+window.HTMLElement.prototype.scrollIntoView = window.HTMLElement.prototype.scrollIntoView || function () {}

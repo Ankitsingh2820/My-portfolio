@@ -154,6 +154,24 @@ export function IconMessageCircle(props) {
   )
 }
 
+export function IconMenu(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </svg>
+  )
+}
+
+export function IconFileScan(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M7 3h7l4 4v14H7z" />
+      <path d="M14 3v4h4" />
+      <path d="M9 13h6M9 16h6" />
+    </svg>
+  )
+}
+
 export function IconSend(props) {
   return (
     <svg {...base} {...props}>
