@@ -106,13 +106,9 @@ function ProjectCard({ project }) {
         className="absolute inset-0 rounded-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan focus-visible:ring-inset"
       />
 
-      {/* 16:9 placeholder visual — TODO: replace with a real screenshot or architecture diagram. */}
       <div className="relative aspect-video bg-gradient-to-br from-cyan/15 via-ink-2 to-violet/10 flex items-center justify-center pointer-events-none">
         <span className="font-display text-4xl font-bold text-bone/25">
           {initials(project.title)}
-        </span>
-        <span className="absolute bottom-2 right-3 font-sans text-[11px] text-muted/70">
-          TODO: add screenshot
         </span>
       </div>
 
