@@ -8,8 +8,8 @@ const SERVICES = [
     title: 'RAG & Document Chatbots',
     description:
       'AI assistants grounded in your own PDFs, scanned files, docs, and knowledge bases — with citations back to the source, not guesses.',
-    timeline: 'TODO',
-    startingFrom: 'TODO',
+    timeline: '2-4 weeks',
+    startingFrom: '$300',
     featured: true,
   },
   {
@@ -17,32 +17,32 @@ const SERVICES = [
     title: 'Document AI & Automation',
     description:
       'OCR, data extraction, summarization, timelines, and automated document generation for legal, insurance, finance, and real estate teams.',
-    timeline: 'TODO',
-    startingFrom: 'TODO',
+    timeline: '2-4 weeks',
+    startingFrom: '$300',
   },
   {
     icon: IconChip,
     title: 'AI Agents & Workflow Automation',
     description:
       'LangGraph agents and n8n/MCP integrations for lead handling, email triage, CRM updates, and reporting.',
-    timeline: 'TODO',
-    startingFrom: 'TODO',
+    timeline: '2-4 weeks',
+    startingFrom: '$300',
   },
   {
     icon: IconTarget,
     title: 'LLM Cost & Reliability Audit',
     description:
       'I measure an existing AI feature, then cut token cost and latency with prompt caching, model routing, and multi-provider fallback — plus evaluation in CI so quality doesn’t regress.',
-    timeline: 'TODO',
-    startingFrom: 'TODO',
+    timeline: '2-4 weeks',
+    startingFrom: '$300',
   },
   {
     icon: IconLaunch,
     title: 'AI Features for Your App',
     description:
       'Production FastAPI services and REST APIs that add AI to an existing product, containerized with Docker.',
-    timeline: 'TODO',
-    startingFrom: 'TODO',
+    timeline: '2-4 weeks',
+    startingFrom: '$300',
   },
 ]
 
