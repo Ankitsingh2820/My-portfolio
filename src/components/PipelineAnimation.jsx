@@ -64,12 +64,12 @@ export default function PipelineAnimation() {
   }, [reduced])
 
   return (
-    <div className="overflow-x-auto pb-2">
+    <div className="w-full">
       <svg
         ref={svgRef}
-        width={TOTAL_W}
-        height={TOTAL_H}
         viewBox={`0 0 ${TOTAL_W} ${TOTAL_H}`}
+        preserveAspectRatio="xMidYMid meet"
+        className="block w-full h-auto"
         aria-label="Data pipeline: Ingest → Transform → Embed → Retrieve → Generate"
         role="img"
       >
